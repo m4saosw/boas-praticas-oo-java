@@ -16,9 +16,7 @@ public class GeradorDeNotaFiscal {
         NotaFiscal nf = new NotaFiscal(valor, impostoSimplesSobreO(valor));
 
         // Pattern Observer
-        for (AcaoAposGerarNota acao : this.acoes) {
-            acao.executa(nf);
-        }
+        this.acoes.forEach(acao -> acao.executa(nf));
 
         return nf;
     }
