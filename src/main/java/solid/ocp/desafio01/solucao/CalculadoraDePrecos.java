@@ -1,16 +1,21 @@
 package solid.ocp.desafio01.solucao;
 
 /**
- * Aplique o OCP nesta classe
+ * OCP
  */
 public class CalculadoraDePrecos {
+    private TabelaDePreco tabela;
+    private Frete frete;
+
+    public CalculadoraDePrecos(TabelaDePreco tabela, Frete frete) {
+        this.tabela = tabela;
+        this.frete = frete;
+    }
+
     public double calcula(Compra produto) {
-        TabelaDePrecoPadrao tabela = new TabelaDePrecoPadrao();
-        Frete correios = new Frete();
-
         double desconto = tabela.descontoPara(produto.getValor());
-        double frete = correios.para(produto.getCidade());
+        double valorFrete = frete.para(produto.getCidade());
 
-        return produto.getValor() * (1 - desconto) + frete;
+        return produto.getValor() * (1 - desconto) + valorFrete;
     }
 }
