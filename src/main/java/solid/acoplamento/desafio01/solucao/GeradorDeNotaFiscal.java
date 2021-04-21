@@ -1,13 +1,12 @@
 package solid.acoplamento.desafio01.solucao;
 
+import java.util.List;
+
 public class GeradorDeNotaFiscal {
+    private final List<AcaoAposGerarNota> acoes;
 
-    private final EnviadorDeEmail email;
-    private final NotaFiscalDao dao;
-
-    public GeradorDeNotaFiscal(EnviadorDeEmail email, NotaFiscalDao dao) {
-        this.email = email;
-        this.dao = dao;
+    public GeradorDeNotaFiscal(List<AcaoAposGerarNota> acoes) {
+        this.acoes = acoes;
     }
 
     public NotaFiscal gera(Fatura fatura) {
@@ -16,8 +15,10 @@ public class GeradorDeNotaFiscal {
 
         NotaFiscal nf = new NotaFiscal(valor, impostoSimplesSobreO(valor));
 
-        email.enviaEmail(nf);
-        dao.persiste(nf);
+        // Pattern Observer
+        for (AcaoAposGerarNota acao : this.acoes) {
+            acao.executa(nf);
+        }
 
         return nf;
     }

@@ -1,8 +1,9 @@
 package solid.acoplamento.desafio01.solucao;
 
-public class EnviadorDeEmail {
+public class EnviadorDeEmail implements AcaoAposGerarNota{
 
-    public void enviaEmail(NotaFiscal nf) {
+    @Override
+    public void executa(NotaFiscal nf) {
         System.out.println("envia email da nf " + nf.getId());
     }
 }
