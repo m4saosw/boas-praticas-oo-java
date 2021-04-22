@@ -1,4 +1,4 @@
-package solid.acoplamento.desafio01.solucao;
+package acoplamento.desafio01.solucao;
 
 public class NotaFiscal {
 

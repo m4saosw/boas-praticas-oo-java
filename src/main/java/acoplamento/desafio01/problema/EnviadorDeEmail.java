@@ -1,4 +1,4 @@
-package solid.acoplamento.desafio01.problema;
+package acoplamento.desafio01.problema;
 
 public class EnviadorDeEmail {
 
