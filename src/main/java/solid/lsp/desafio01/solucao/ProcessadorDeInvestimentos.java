@@ -3,6 +3,9 @@ package solid.lsp.desafio01.solucao;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Removido o calculo de rendimentos da conta de estudante, pois não rende
+ */
 public class ProcessadorDeInvestimentos {
 
     public static void main(String[] args) {
@@ -16,13 +19,7 @@ public class ProcessadorDeInvestimentos {
     }
 
     private static List<ContaComum> contasDoBanco() {
-        return Arrays.asList(umaContaCom(100), umaContaCom(150), contaDeEstudanteCom(200));
-    }
-
-    private static ContaComum contaDeEstudanteCom(double amount) {
-        ContaDeEstudante c = new ContaDeEstudante();
-        c.deposita(amount);
-        return c;
+        return Arrays.asList(umaContaCom(100), umaContaCom(150));
     }
 
     private static ContaComum umaContaCom(double valor) {

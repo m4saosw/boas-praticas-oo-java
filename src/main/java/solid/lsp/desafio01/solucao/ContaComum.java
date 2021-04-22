@@ -1,30 +1,25 @@
 package solid.lsp.desafio01.solucao;
 
 public class ContaComum {
-
-    protected double saldo;
+    private ManipuladorDeSaldo manipulador;
 
     public ContaComum() {
-        this.saldo = 0;
+        this.manipulador = new ManipuladorDeSaldo();
     }
 
     public void deposita(double valor) {
-        this.saldo += valor;
+        this.manipulador.deposita(valor);
     }
 
     public void saca(double valor) {
-        if (valor <= this.saldo) {
-            this.saldo -= valor;
-        } else {
-            throw new IllegalArgumentException();
-        }
+        this.manipulador.saca(valor);
     }
 
     public void rende() {
-        this.saldo += this.saldo * 0.01;
+        this.manipulador.rende(1.1);
     }
 
     public double getSaldo() {
-        return saldo;
+        return this.manipulador.getSaldo();
     }
 }
