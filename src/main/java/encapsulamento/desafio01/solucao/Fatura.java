@@ -1,6 +1,7 @@
 package encapsulamento.desafio01.solucao;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Fatura {
@@ -9,6 +10,8 @@ public class Fatura {
     private double valor;
     private List<Pagamento> pagamentos;
     private boolean pago;
+
+    private double valorTotalDosPagamentos;
 
     public Fatura(String cliente, double valor) {
         this.cliente = cliente;
@@ -26,16 +29,22 @@ public class Fatura {
     }
 
     public List<Pagamento> getPagamentos() {
-        return pagamentos;
+        return Collections.unmodifiableList(pagamentos);
     }
 
     public boolean isPago() {
         return pago;
     }
 
-    public void setPago(boolean pago) {
-        this.pago = pago;
+    public void adicionaPagamento(Pagamento pagamento) {
+        this.pagamentos.add(pagamento);
+        somaValorDoPagamento(pagamento);
+
+        if (this.valorTotalDosPagamentos >= this.valor)
+            this.pago = true;
     }
 
-
+    private void somaValorDoPagamento(Pagamento pagamento) {
+        this.valorTotalDosPagamentos += pagamento.getValor();
+    }
 }
